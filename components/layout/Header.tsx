@@ -15,7 +15,7 @@ export function Header() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-card border-b border-border h-14 flex items-center justify-between px-4 max-w-lg mx-auto w-full">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-card border-b border-border h-14 flex items-center justify-between px-4 w-full max-w-5xl mx-auto md:px-8">
       <Link href="/app" className="text-primary font-extrabold text-lg tracking-tight">
         ⚽ StampSwap
       </Link>
