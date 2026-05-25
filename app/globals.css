@@ -2,16 +2,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-base: #0f1923;
-  --color-card: #1a2535;
-  --color-border: #263547;
-  --color-primary: #34d399;
-  --color-primary-dark: #059669;
+  --color-base: #f8fafc;
+  --color-card: #ffffff;
+  --color-border: #e2e8f0;
+  --color-primary: #059669;
+  --color-primary-dark: #047857;
   --color-muted: #64748b;
-  --color-foreground: #e2e8f0;
-  --color-amber: #fbbf24;
-  --color-danger: #ef4444;
-
+  --color-foreground: #0f172a;
+  --color-amber: #d97706;
+  --color-danger: #dc2626;
   --font-family-sans: 'Inter', sans-serif;
 }
 
@@ -24,4 +23,17 @@
   * {
     border-color: var(--color-border);
   }
+}
+
+/* Dark mode - when .dark class is on html element (next-themes default) */
+.dark {
+  --color-base: #0f1923;
+  --color-card: #1a2535;
+  --color-border: #263547;
+  --color-primary: #34d399;
+  --color-primary-dark: #059669;
+  --color-muted: #64748b;
+  --color-foreground: #e2e8f0;
+  --color-amber: #fbbf24;
+  --color-danger: #ef4444;
 }
