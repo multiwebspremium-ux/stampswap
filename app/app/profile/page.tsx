@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { getProfile } from '@/lib/queries/profiles'
 import { getMyStamps } from '@/lib/queries/stamps'
 import { AvatarUpload } from './AvatarUpload'
+import { EditProfileForm } from './EditProfileForm'
 import { Badge } from '@/components/ui/Badge'
 import { LogoutButton } from '@/components/ui/LogoutButton'
 import { StampCard } from '@/components/ui/StampCard'
@@ -25,30 +26,58 @@ export default async function ProfilePage() {
 
   return (
     <div className="p-4 space-y-5">
-      <div className="bg-card border border-border rounded-2xl p-5 flex gap-4 items-center">
-        <AvatarUpload userId={user.id} avatarUrl={profile.avatar_url} name={profile.full_name} />
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-foreground font-bold text-lg">{profile.full_name}</span>
-            {profile.verified && <Badge variant="verified">✓ Verificado</Badge>}
+      <div className="bg-card border border-border rounded-2xl p-5 space-y-4">
+        <div className="flex gap-4 items-start">
+          <AvatarUpload userId={user.id} avatarUrl={profile.avatar_url} name={profile.full_name} />
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-foreground font-bold text-lg">{profile.full_name}</span>
+              {profile.verified && <Badge variant="verified">✓ Verificado</Badge>}
+            </div>
+            <div className="text-muted text-sm">@{profile.username}</div>
+            <div className="text-muted text-xs mt-0.5">📍 {profile.city}</div>
           </div>
-          <div className="text-muted text-sm">@{profile.username}</div>
-          <div className="text-muted text-xs mt-0.5">📍 {profile.city}</div>
-          <div className="flex gap-4 mt-2">
-            <div>
-              <div className="text-foreground font-bold text-sm">{profile.trades_count}</div>
-              <div className="text-muted text-xs">Intercambios</div>
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          <EditProfileForm profile={{ full_name: profile.full_name, phone: (profile as any).phone ?? null, city: profile.city }} />
+        </div>
+
+        {/* Email y teléfono */}
+        <div className="border-t border-border pt-3 space-y-1">
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-muted">✉️</span>
+            <span className="text-foreground">{user.email}</span>
+          </div>
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          {(profile as any).phone && (
+            <div className="flex items-center gap-2 text-sm">
+              <span className="text-muted">📱</span>
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              <span className="text-foreground">{(profile as any).phone}</span>
             </div>
-            <div>
-              <div className="text-foreground font-bold text-sm">
-                {profile.reputation_score > 0 ? `⭐ ${profile.reputation_score}` : '—'}
-              </div>
-              <div className="text-muted text-xs">Reputación</div>
+          )}
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          {!(profile as any).phone && (
+            <div className="flex items-center gap-2 text-sm text-muted">
+              <span>📱</span>
+              <span className="italic">Sin teléfono — agrega uno en Editar perfil</span>
             </div>
-            <div>
-              <div className="text-foreground font-bold text-sm">{stamps.length}</div>
-              <div className="text-muted text-xs">Estampas</div>
+          )}
+        </div>
+
+        <div className="flex gap-4 pt-1">
+          <div>
+            <div className="text-foreground font-bold text-sm">{profile.trades_count}</div>
+            <div className="text-muted text-xs">Intercambios</div>
+          </div>
+          <div>
+            <div className="text-foreground font-bold text-sm">
+              {profile.reputation_score > 0 ? `⭐ ${profile.reputation_score}` : '—'}
             </div>
+            <div className="text-muted text-xs">Reputación</div>
+          </div>
+          <div>
+            <div className="text-foreground font-bold text-sm">{stamps.length}</div>
+            <div className="text-muted text-xs">Estampas</div>
           </div>
         </div>
       </div>
