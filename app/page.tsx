@@ -1,5 +1,6 @@
 // app/page.tsx
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase/server'
 import { getRecentStamps, getMostWantedStamps } from '@/lib/queries/stamps'
 import { getTopUsers, type TopUser } from '@/lib/queries/profiles'
@@ -24,28 +25,28 @@ const SAFETY = [
 
 const FIFA_NEWS = [
   {
-    emoji: '🏟️',
+    image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=120&h=120&fit=crop&auto=format',
     tag: 'Sedes',
     title: 'México, EE.UU. y Canadá listos para el Mundial 2026',
     desc: 'El torneo se disputará en 16 ciudades anfitrionas con 104 partidos en total, el más grande en la historia de la Copa del Mundo.',
     date: 'FIFA 2026',
   },
   {
-    emoji: '⚽',
+    image: 'https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=120&h=120&fit=crop&auto=format',
     tag: 'Álbum Panini',
     title: 'El álbum oficial Panini FIFA 2026 ya está disponible',
     desc: '670 estampas para coleccionar, incluyendo versiones especiales ultra raras y estampas brillantes de las estrellas del torneo.',
     date: 'Panini Group',
   },
   {
-    emoji: '🇲🇽',
+    image: 'https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=120&h=120&fit=crop&auto=format',
     tag: 'El Tri',
     title: 'México debuta en el Estadio Azteca el 11 de junio',
     desc: 'El Estadio Azteca será una de las sedes históricas del torneo. México jugará su grupo en casa ante la afición.',
     date: 'FEMEXFUT',
   },
   {
-    emoji: '🌟',
+    image: 'https://images.unsplash.com/photo-1551958219-acbc595d1bf7?w=120&h=120&fit=crop&auto=format',
     tag: 'Estrellas',
     title: 'Las estampas más raras del álbum FIFA 2026',
     desc: 'Mbappé, Vinicius Jr., Pedri y Lamine Yamal encabezan la lista de estampas "Ultra" más difíciles de conseguir.',
@@ -76,26 +77,36 @@ export default async function LandingPage() {
       </header>
 
       {/* Hero */}
-      <section className="px-5 pt-10 pb-14 text-center max-w-lg mx-auto">
-        <div className="inline-block bg-primary/10 border border-primary/20 text-primary text-xs font-bold px-3 py-1 rounded-full mb-5">
-          ⚡ FIFA WORLD CUP 2026
-        </div>
-        <h1 className="text-3xl font-extrabold leading-tight mb-4">
-          Completa tu álbum intercambiando con fans de todo México
-        </h1>
-        <p className="text-muted text-base leading-relaxed mb-8">
-          Publica tus repetidas, registra las que te faltan y encuentra coincidencias automáticamente.
-        </p>
-        <div className="flex flex-col gap-3 max-w-xs mx-auto">
-          <Link href="/register"
-            className="bg-gradient-to-r from-primary-dark to-primary font-bold py-4 rounded-full text-center text-lg shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:brightness-110 transition-all"
-            style={{color:'#0f1923'}}>
-            Crear cuenta gratis
-          </Link>
-          <Link href="#estampas"
-            className="border border-border text-foreground font-semibold py-3.5 rounded-full text-center text-sm hover:border-primary/40 transition-colors">
-            Ver estampas disponibles
-          </Link>
+      <section className="px-5 pt-10 pb-14 text-center max-w-lg mx-auto relative overflow-hidden">
+        {/* Animated gradient blobs */}
+        <div className="absolute -top-10 -left-10 w-64 h-64 rounded-full opacity-20 animate-blob"
+          style={{background: 'radial-gradient(circle, #34d399, #059669)', filter: 'blur(40px)'}} />
+        <div className="absolute -bottom-10 -right-10 w-64 h-64 rounded-full opacity-15 animate-blob animation-delay-2000"
+          style={{background: 'radial-gradient(circle, #059669, #34d399)', filter: 'blur(50px)'}} />
+        <div className="absolute top-20 right-0 w-48 h-48 rounded-full opacity-10 animate-blob animation-delay-4000"
+          style={{background: 'radial-gradient(circle, #34d399, transparent)', filter: 'blur(35px)'}} />
+
+        <div className="relative z-10">
+          <div className="inline-block bg-primary/10 border border-primary/20 text-primary text-xs font-bold px-3 py-1 rounded-full mb-5 animate-fade-in-up">
+            ⚡ FIFA WORLD CUP 2026
+          </div>
+          <h1 className="text-3xl font-extrabold leading-tight mb-4 animate-fade-in-up delay-100">
+            Completa tu álbum intercambiando con fans de todo México
+          </h1>
+          <p className="text-muted text-base leading-relaxed mb-8 animate-fade-in-up delay-200">
+            Publica tus repetidas, registra las que te faltan y encuentra coincidencias automáticamente.
+          </p>
+          <div className="flex flex-col gap-3 max-w-xs mx-auto animate-fade-in-up delay-300">
+            <Link href="/register"
+              className="bg-gradient-to-r from-primary-dark to-primary font-bold py-4 rounded-full text-center text-lg shadow-[0_8px_30px_rgba(5,150,105,0.35)] hover:shadow-[0_8px_40px_rgba(5,150,105,0.5)] hover:brightness-110 transition-all"
+              style={{color:'#0f1923'}}>
+              Crear cuenta gratis
+            </Link>
+            <Link href="#estampas"
+              className="border border-border text-foreground font-semibold py-3.5 rounded-full text-center text-sm hover:border-primary/40 hover:shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-all">
+              Ver estampas disponibles
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -104,7 +115,7 @@ export default async function LandingPage() {
         <h2 className="text-2xl font-bold text-center mb-8">¿Cómo funciona?</h2>
         <div className="space-y-4">
           {STEPS.map((step, i) => (
-            <div key={i} className="bg-card border border-border rounded-xl p-4 flex gap-4 items-center">
+            <div key={i} className={`bg-card border border-border rounded-xl p-4 flex gap-4 items-center shadow-sm hover:shadow-md transition-shadow animate-fade-in-up delay-${(i+1)*100}`}>
               <span className="text-3xl">{step.icon}</span>
               <div>
                 <div className="text-foreground font-bold text-sm">{step.title}</div>
@@ -215,9 +226,9 @@ export default async function LandingPage() {
           <p className="text-muted text-sm mb-6">Lo último del Mundial</p>
           <div className="grid grid-cols-1 gap-4">
             {FIFA_NEWS.map((news, i) => (
-              <div key={i} className="bg-card border border-border rounded-xl p-4 flex gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">
-                  {news.emoji}
+              <div key={i} className="bg-card border border-border rounded-xl p-4 flex gap-4 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer">
+                <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
+                  <Image src={news.image} alt={news.tag} width={56} height={56} className="object-cover rounded-xl" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
@@ -239,8 +250,8 @@ export default async function LandingPage() {
           <h2 className="text-2xl font-bold text-center mb-6">Tu seguridad es prioridad</h2>
           <div className="grid grid-cols-1 gap-2">
             {SAFETY.map((item, i) => (
-              <div key={i} className="flex gap-3 items-center">
-                <span className="text-primary text-lg">✅</span>
+              <div key={i} className="flex gap-3 items-start">
+                <span className="text-primary text-lg mt-0.5 flex-shrink-0">✅</span>
                 <span className="text-foreground text-sm">{item}</span>
               </div>
             ))}
@@ -256,8 +267,8 @@ export default async function LandingPage() {
             { n: '840+',   label: 'Usuarios registrados' },
             { n: '1,200+', label: 'Matches exitosos' },
           ].map((stat, i) => (
-            <div key={i} className="bg-card border border-border rounded-xl p-4">
-              <div className="text-primary font-extrabold text-xl">{stat.n}</div>
+            <div key={i} className="bg-card border border-border rounded-xl p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <div className="text-primary font-extrabold text-2xl">{stat.n}</div>
               <div className="text-muted text-xs mt-1">{stat.label}</div>
             </div>
           ))}
