@@ -32,7 +32,7 @@ export default async function LandingPage() {
       <header className="px-5 py-4 flex items-center justify-between max-w-2xl mx-auto">
         <span className="text-primary font-extrabold text-xl">⚽ StampSwap</span>
         <div className="flex gap-2">
-          <Link href="/login" className="text-muted text-sm hover:text-foreground transition-colors">Entrar</Link>
+          <Link href="/login" className="border border-border text-foreground text-sm px-4 py-1.5 rounded-full hover:border-primary/40 transition-colors">Entrar</Link>
           <Link href="/register"
             className="bg-gradient-to-r from-primary-dark to-primary font-bold text-sm px-4 py-1.5 rounded-full hover:brightness-110 transition-all"
             style={{color:'#0f1923'}}>
@@ -87,23 +87,23 @@ export default async function LandingPage() {
         <p className="text-muted text-sm text-center mb-6">
           {user ? 'Haz clic en cualquiera para ver más detalles' : 'Regístrate para ver quién las tiene'}
         </p>
-        <div className="space-y-2 relative">
+        <div className="space-y-2">
           {recent.map((s, i) => (
             <StampCard key={s.id} stamp={s}
               showOwner={!!user}
               hideOwner={!user && i >= 3}
             />
           ))}
-          {!user && (
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-base to-transparent flex items-end justify-center pb-4">
-              <Link href="/register"
-                className="bg-gradient-to-r from-primary-dark to-primary font-bold px-6 py-3 rounded-full text-sm shadow-lg hover:brightness-110 transition-all"
-                style={{color:'#0f1923'}}>
-                Ver todas → Crear cuenta
-              </Link>
-            </div>
-          )}
         </div>
+        {!user && (
+          <div className="mt-6 text-center">
+            <Link href="/register"
+              className="inline-block bg-gradient-to-r from-primary-dark to-primary font-bold px-6 py-3 rounded-full text-sm shadow-lg hover:brightness-110 transition-all"
+              style={{color:'#0f1923'}}>
+              Ver todas → Crear cuenta
+            </Link>
+          </div>
+        )}
       </section>
 
       {/* Seguridad */}
