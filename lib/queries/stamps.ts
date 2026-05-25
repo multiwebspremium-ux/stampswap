@@ -56,3 +56,29 @@ export async function createStamp(stamp: Omit<Stamp, 'id' | 'created_at'>) {
   if (error) throw error
   return data as Stamp
 }
+
+type WantedStampRow = { number: number; player_name: string; country: string; rarity: string }
+
+export async function getMostWantedStamps(limit = 10) {
+  const supabase = await createClient()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data } = await (supabase as any)
+    .from('stamps')
+    .select('number, player_name, country, rarity')
+    .eq('type', 'want') as { data: WantedStampRow[] | null }
+
+  if (!data) return []
+
+  // Group by number and count
+  const counts: Record<number, { number: number; player_name: string; country: string; rarity: string; count: number }> = {}
+  for (const s of data) {
+    if (!counts[s.number]) {
+      counts[s.number] = { number: s.number, player_name: s.player_name, country: s.country, rarity: s.rarity, count: 0 }
+    }
+    counts[s.number].count++
+  }
+
+  return Object.values(counts)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, limit)
+}
