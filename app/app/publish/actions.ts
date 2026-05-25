@@ -26,6 +26,8 @@ export async function publishStampAction(formData: FormData) {
     return { error: 'Número inválido (1-700)' }
   }
 
+  const image_url = formData.get('image_url') as string | null
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { error } = await (supabase.from('stamps') as any).insert({
     owner_id: user.id,
@@ -35,6 +37,7 @@ export async function publishStampAction(formData: FormData) {
     rarity: formData.get('rarity') as string,
     quantity: parseInt((formData.get('quantity') as string) ?? '1'),
     type: formData.get('type') as string,
+    ...(image_url ? { image_url } : {}),
   })
 
   if (error) return { error: error.message }
