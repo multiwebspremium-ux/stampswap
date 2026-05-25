@@ -119,40 +119,62 @@ export default async function LandingPage() {
       <section id="estampas" className="py-12">
         <div className="px-5 max-w-2xl mx-auto mb-4 flex items-center justify-between">
           <h2 className="text-2xl font-bold">Estampas recientes</h2>
-          <span className="text-muted text-sm">{user ? '' : 'Regístrate para ver quién las tiene'}</span>
-        </div>
-        <div className="flex gap-3 overflow-x-auto px-5 pb-4 snap-x snap-mandatory"
-          style={{scrollbarWidth:'none'}}>
-          {recent.map((s, i) => (
-            <div key={s.id} className="snap-start flex-shrink-0 w-44 bg-card border border-border rounded-xl p-3">
-              <div className="w-full h-28 bg-base rounded-lg mb-3 flex items-center justify-center text-4xl">
-                ⚽
-              </div>
-              <div className="text-xs font-bold text-foreground truncate">#{s.number} {s.player_name}</div>
-              <div className="text-xs text-muted mt-0.5">{s.country}</div>
-              <div className={`mt-2 text-xs font-semibold px-2 py-0.5 rounded-full inline-block ${
-                s.type === 'have' ? 'bg-primary/10 text-primary' : 'bg-amber-100 text-amber-700'
-              }`}>
-                {s.type === 'have' ? 'Disponible' : 'Buscada'}
-              </div>
-              {!user && i >= 3 && (
-                <div className="mt-2 text-xs text-muted">🔒 Regístrate</div>
-              )}
-              {user && (s as { profiles?: { username: string; city: string } | null }).profiles && (
-                <div className="mt-2 text-xs text-muted truncate">@{(s as { profiles?: { username: string; city: string } | null }).profiles!.username}</div>
-              )}
-            </div>
-          ))}
-          {!user && (
-            <div className="snap-start flex-shrink-0 w-44 bg-primary/5 border border-primary/20 rounded-xl p-3 flex flex-col items-center justify-center gap-2">
-              <div className="text-2xl">🔓</div>
-              <p className="text-xs text-center text-foreground font-semibold">Ver todas las estampas</p>
-              <Link href="/register" className="bg-gradient-to-r from-primary-dark to-primary text-xs font-bold px-3 py-1.5 rounded-full" style={{color:'#0f1923'}}>
-                Crear cuenta
-              </Link>
-            </div>
+          {!user && recent.length > 0 && (
+            <span className="text-muted text-sm">Regístrate para ver quién las tiene</span>
           )}
         </div>
+
+        {recent.length === 0 ? (
+          <div className="px-5 max-w-2xl mx-auto">
+            <div className="bg-card border border-border rounded-xl p-8 text-center">
+              <div className="text-4xl mb-3">⚽</div>
+              <p className="text-foreground font-semibold mb-1">Aún no hay estampas publicadas</p>
+              <p className="text-muted text-sm mb-4">¡Sé el primero en publicar las tuyas!</p>
+              {!user && (
+                <Link href="/register"
+                  className="inline-block bg-gradient-to-r from-primary-dark to-primary font-bold px-5 py-2.5 rounded-full text-sm hover:brightness-110 transition-all"
+                  style={{color:'#0f1923'}}>
+                  Crear cuenta gratis
+                </Link>
+              )}
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="flex gap-3 overflow-x-auto px-5 pb-4 snap-x snap-mandatory"
+              style={{scrollbarWidth:'none'}}>
+              {recent.map((s, i) => (
+                <div key={s.id} className="snap-start flex-shrink-0 w-44 bg-card border border-border rounded-xl p-3">
+                  <div className="w-full h-28 bg-base rounded-lg mb-3 flex items-center justify-center text-4xl">
+                    ⚽
+                  </div>
+                  <div className="text-xs font-bold text-foreground truncate">#{s.number} {s.player_name}</div>
+                  <div className="text-xs text-muted mt-0.5">{s.country}</div>
+                  <div className={`mt-2 text-xs font-semibold px-2 py-0.5 rounded-full inline-block ${
+                    s.type === 'have' ? 'bg-primary/10 text-primary' : 'bg-amber/10 text-amber'
+                  }`}>
+                    {s.type === 'have' ? 'Disponible' : 'Buscada'}
+                  </div>
+                  {!user && i >= 3 && (
+                    <div className="mt-2 text-xs text-muted">🔒 Regístrate</div>
+                  )}
+                  {user && (s as { profiles?: { username: string } | null }).profiles && (
+                    <div className="mt-2 text-xs text-muted truncate">@{(s as { profiles?: { username: string } | null }).profiles!.username}</div>
+                  )}
+                </div>
+              ))}
+            </div>
+            {!user && (
+              <div className="px-5 max-w-2xl mx-auto mt-4 text-center">
+                <Link href="/register"
+                  className="inline-block bg-gradient-to-r from-primary-dark to-primary font-bold px-6 py-3 rounded-full text-sm shadow-lg hover:brightness-110 transition-all"
+                  style={{color:'#0f1923'}}>
+                  🔓 Ver quién tiene estas estampas → Crear cuenta
+                </Link>
+              </div>
+            )}
+          </>
+        )}
       </section>
 
       {/* Estampas más buscadas */}
