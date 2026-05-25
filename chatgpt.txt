@@ -1,0 +1,439 @@
+EXPERIENCIA PRINCIPAL
+Objetivo del usuario
+
+El usuario entra y piensa:
+
+“Quiero encontrar rápido quién tiene las estampas que me faltan cerca de mí.”
+
+TODO debe girar alrededor de eso.
+
+FLUJO IDEAL DEL USUARIO
+1. Landing Page
+
+La landing debe ser extremadamente visual y mobile-first.
+
+Hero principal
+
+Algo así:
+
+Encuentra e intercambia estampas del mundial en tu ciudad ⚽
+Busca las que te faltan
+Publica repetidas
+Chatea seguro dentro de la app
+Intercambia en lugares públicos
+
+[ Crear cuenta ]
+[ Ver estampas disponibles ]
+
+Cosas importantes en la landing
+Secciones
+1. Hero
+
+Con CTA enorme.
+
+2. Cómo funciona
+
+Con íconos simples:
+
+Regístrate
+Sube tus repetidas
+Encuentra coincidencias
+Chatea
+Intercambia
+3. “Últimas estampas publicadas”
+
+Tipo grid dinámico:
+
+Foto
+Número
+Jugador
+País
+Rareza
+Ciudad
+
+Pero:
+
+SI NO ESTÁS LOGGEADO:
+NO ves quién la tiene
+NO puedes escribir
+
+Esto genera registro.
+
+4. Seguridad
+
+MUY IMPORTANTE.
+
+Aquí ganas confianza.
+
+Ejemplo:
+
+✅ Usuarios verificados
+✅ Chat privado seguro
+✅ Recomendamos reunirse en plazas comerciales
+✅ Nunca compartas datos bancarios
+✅ Sistema de reportes
+✅ Bloqueo de usuarios sospechosos
+
+5. Estadísticas
+3,200 estampas intercambiadas
+840 usuarios registrados
+1,200 coincidencias exitosas
+
+Da confianza social.
+
+SISTEMA DE REGISTRO
+
+Aquí debes hacerlo MUY bien.
+
+Registro obligatorio con:
+Nombre
+Usuario único
+Email
+Número celular
+Ciudad
+Contraseña
+VALIDACIÓN RECOMENDADA
+Nivel 1 — Email
+
+Correo de verificación obligatorio.
+
+Nivel 2 — WhatsApp/SMS
+
+Código OTP.
+
+Esto elimina MUCHOS bots.
+
+Nivel 3 — Foto/selfie opcional
+
+Puedes agregar:
+
+“Cuenta verificada”
+
+Tipo marketplace serio.
+
+TIPOS DE CUENTAS
+Usuario normal
+
+Puede:
+
+Publicar estampas
+Chatear
+Hacer intercambios
+Usuario verificado
+
+Tiene:
+
+Badge azul/verde
+Más confianza
+Más visibilidad
+SISTEMA MÁS IMPORTANTE: INVENTARIO
+
+Aquí está el corazón.
+
+CADA USUARIO DEBE PODER:
+Tengo
+
+Lista de repetidas.
+
+Me faltan
+
+Wishlist.
+
+Y EL SISTEMA DEBE HACER MATCHES
+
+Ejemplo:
+
+Tú tienes:
+
+Messi #10
+
+Y te falta:
+
+Neymar #14
+
+Entonces el sistema detecta:
+
+“Carlos tiene Neymar y busca Messi”
+
+🔥 BOOM.
+Ahí nace la magia.
+
+PANTALLA PRINCIPAL (APP LOGGEADO)
+Tabs inferiores tipo app moderna
+Inicio
+Buscar
+Coincidencias
+Chats
+Perfil
+
+100% estilo app móvil.
+
+BUSCADOR
+
+Debe ser brutalmente rápido.
+
+Filtros
+Número
+Jugador
+Selección
+Rareza
+“Solo cerca de mí”
+“Usuarios verificados”
+“Disponible ahora”
+PERFIL DE USUARIO
+
+Debe inspirar confianza.
+
+Mostrar:
+Foto
+Ciudad
+Reputación
+Intercambios realizados
+Fecha de registro
+Verificado o no
+Última conexión
+SISTEMA DE REPUTACIÓN
+
+CRÍTICO.
+
+Después de cada intercambio:
+
+⭐ ⭐ ⭐ ⭐ ⭐
+
+Y comentarios tipo:
+
+“Muy puntual”
+“Intercambio seguro”
+“Todo bien”
+
+Esto hace crecer la confianza.
+
+CHAT INTERNO
+
+SÍ O SÍ dentro de la plataforma.
+
+NO WhatsApp al inicio.
+
+El chat debería tener:
+Mensajes en tiempo real
+Fotos
+Enviar ubicación sugerida
+Botón “Marcar intercambio realizado”
+Reportar usuario
+Bloquear usuario
+IA / AUTOMATIZACIÓN INTERESANTE
+
+Podrías agregar:
+
+“Punto seguro recomendado”
+
+El sistema sugiera:
+
+plazas
+cafeterías
+centros comerciales
+
+Para reunirse.
+
+ALERTAS IMPORTANTES
+
+Antes de chatear:
+
+⚠️ Nunca envíes dinero
+⚠️ Intercambia en lugares públicos
+⚠️ Lleva acompañante si eres menor
+⚠️ Reporta actividad sospechosa
+
+SISTEMA ANTI-SPAM
+
+MUY IMPORTANTE.
+
+Agregaría:
+Límites
+Máximo mensajes por minuto
+Máximo publicaciones diarias
+Detección de bots
+reCAPTCHA
+OTP SMS
+Email real
+Detección IP sospechosa
+OPCIÓN INTELIGENTE
+“Intercambio directo”
+
+El usuario propone:
+
+“Tengo X y quiero Y”
+
+Y la otra persona acepta.
+
+OTRA FUNCIÓN BUENA
+Modo evento
+
+Ejemplo:
+
+“Intercambio en Plaza Forum este sábado”
+
+Tipo mini meetup.
+
+DISEÑO / UI
+
+Yo lo haría:
+
+Estilo:
+Moderno
+Limpio
+Muy visual
+Grandes tarjetas
+Muy fácil con una mano
+COLORES
+
+Como es fútbol/mundial:
+
+Base:
+Azul oscuro
+Blanco
+Verde lima o amarillo para CTA
+
+O:
+
+Negro
+Blanco
+Dorado
+BOTONES
+
+Muy grandes.
+
+Especialmente:
+
+Intercambiar
+Tengo esta
+Me falta
+Chatear
+RESPONSIVE
+
+Aquí debes pensar:
+
+90% móvil
+
+Entonces:
+
+Bottom navigation
+Botones gigantes
+Cards verticales
+Inputs simples
+TECNOLOGÍA QUE RECOMENDARÍA
+Frontend
+React / Next.js
+TailwindCSS
+Backend
+Laravel
+o
+Node.js + NestJS
+Tiempo real
+Socket.IO
+o
+Pusher
+Base de datos
+PostgreSQL
+STORAGE
+
+Para fotos:
+
+Cloudflare R2
+o
+AWS S3
+LOGIN
+JWT
+Refresh tokens
+Sessions seguras
+FUNCIONES PREMIUM FUTURAS
+
+Aquí hay dinero 👀
+
+Premium
+Destacar perfil
+Destacar estampas
+Más visibilidad
+Match prioritario
+Patrocinios locales
+
+Tiendas deportivas.
+
+Eventos patrocinados
+
+Centros comerciales.
+
+IDEA MUY FUERTE
+GEOLOCALIZACIÓN
+
+Mostrar:
+
+“Usuarios cerca de ti”
+
+PERO:
+
+NO mostrar ubicación exacta.
+
+Solo:
+
+colonia aproximada
+zona
+distancia estimada
+
+Por seguridad.
+
+EXTRA QUE AGREGARÍA
+Escáner con cámara
+
+El usuario apunta la cámara a la estampa y automáticamente detecta:
+
+Número
+Jugador
+País
+
+🔥 Eso sería MUY potente.
+
+OTRA IDEA MUY BUENA
+Sistema “Te falta”
+
+Cuando alguien publique una estampa que necesitas:
+
+🔔 Notificación push
+🔔 Email
+🔔 Notificación web
+
+PANEL ADMIN
+
+Necesitas:
+
+Banear usuarios
+Revisar reportes
+Ver actividad sospechosa
+Moderar imágenes
+Estadísticas
+Control anti fraude
+PARA HACERLA VIRAL
+Gamificación
+Logros
+Medallas
+“Top intercambiador”
+Rankings
+SI YO LA HICIERA…
+
+La enfocaría como:
+
+“La forma segura y rápida de completar tu álbum”
+
+NO solo una web de publicaciones.
+
+La clave está en:
+
+✅ confianza
+✅ rapidez
+✅ matches automáticos
+✅ móvil
+✅ seguridad
+✅ chat interno
+✅ reputación
+
+Ahí está el valor real.

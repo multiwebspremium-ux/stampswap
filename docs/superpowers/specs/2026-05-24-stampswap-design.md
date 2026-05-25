@@ -67,6 +67,19 @@ No hay backend propio. Next.js se comunica con Supabase directamente via SDK des
 
 **Tipografía:** Inter (Google Fonts, ya incluida en Next.js)
 
+### Botones
+- Forma: **pill** (`border-radius: 9999px`) en botones principales y de acción
+- Bordes redondeados moderados (`border-radius: 10px`) en botones secundarios dentro de cards
+- Estados explícitos: `static` → `hover` (ligero brillo/escala) → `pressed` (más oscuro, ligero sink)
+- Variantes de color según contexto: verde primario, ámbar para alertas, rojo para destructivas, gris para secundarias
+- Versión `outline` (fondo transparente + borde de color) para acciones secundarias
+
+### Toggles
+- Estilo pill con círculo deslizante
+- Color activo: `#34d399` (verde esmeralda)
+- Color inactivo: `#263547` (borde oscuro)
+- Usados en: filtros de búsqueda ("Solo cerca de mí", "Verificados"), configuración de notificaciones, preferencias de perfil
+
 ---
 
 ## 5. Navegación
