@@ -30,6 +30,7 @@ const FIFA_NEWS = [
     title: 'México, EE.UU. y Canadá listos para el Mundial 2026',
     desc: 'El torneo se disputará en 16 ciudades anfitrionas con 104 partidos en total, el más grande en la historia de la Copa del Mundo.',
     date: 'FIFA 2026',
+    href: 'https://www.fifa.com/fifaplus/es/tournaments/mens/worldcup/canadamexicousa2026',
   },
   {
     image: 'https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=120&h=120&fit=crop&auto=format',
@@ -37,6 +38,7 @@ const FIFA_NEWS = [
     title: 'El álbum oficial Panini FIFA 2026 ya está disponible',
     desc: '670 estampas para coleccionar, incluyendo versiones especiales ultra raras y estampas brillantes de las estrellas del torneo.',
     date: 'Panini Group',
+    href: 'https://www.paninigroup.com',
   },
   {
     image: 'https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=120&h=120&fit=crop&auto=format',
@@ -44,13 +46,15 @@ const FIFA_NEWS = [
     title: 'México debuta en el Estadio Azteca el 11 de junio',
     desc: 'El Estadio Azteca será una de las sedes históricas del torneo. México jugará su grupo en casa ante la afición.',
     date: 'FEMEXFUT',
+    href: 'https://www.femexfut.org.mx',
   },
   {
-    image: 'https://images.unsplash.com/photo-1551958219-acbc595d1bf7?w=120&h=120&fit=crop&auto=format',
+    image: 'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=120&h=120&fit=crop&auto=format',
     tag: 'Estrellas',
     title: 'Las estampas más raras del álbum FIFA 2026',
     desc: 'Mbappé, Vinicius Jr., Pedri y Lamine Yamal encabezan la lista de estampas "Ultra" más difíciles de conseguir.',
     date: 'StampSwap',
+    href: '/register',
   },
 ]
 
@@ -226,7 +230,8 @@ export default async function LandingPage() {
           <p className="text-muted text-sm mb-6">Lo último del Mundial</p>
           <div className="grid grid-cols-1 gap-4">
             {FIFA_NEWS.map((news, i) => (
-              <div key={i} className="bg-card border border-border rounded-xl p-4 flex gap-4 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer">
+              <a key={i} href={news.href} target="_blank" rel="noopener noreferrer"
+                className="bg-card border border-border rounded-xl p-4 flex gap-4 shadow-sm hover:shadow-md hover:border-primary/30 transition-all hover:-translate-y-0.5 cursor-pointer">
                 <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
                   <Image src={news.image} alt={news.tag} width={56} height={56} className="object-cover rounded-xl" />
                 </div>
@@ -238,7 +243,7 @@ export default async function LandingPage() {
                   <div className="text-foreground font-bold text-sm leading-snug mb-1">{news.title}</div>
                   <div className="text-muted text-xs leading-relaxed">{news.desc}</div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
