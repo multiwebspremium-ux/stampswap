@@ -4,6 +4,7 @@ import { getProfile } from '@/lib/queries/profiles'
 import { getMyStamps } from '@/lib/queries/stamps'
 import { AvatarUpload } from './AvatarUpload'
 import { Badge } from '@/components/ui/Badge'
+import { LogoutButton } from '@/components/ui/LogoutButton'
 import { StampCard } from '@/components/ui/StampCard'
 import Link from 'next/link'
 
@@ -75,6 +76,8 @@ export default async function ProfilePage() {
           <div className="space-y-2">{want.map(s => <StampCard key={s.id} stamp={s} />)}</div>
         )}
       </section>
+
+      <LogoutButton className="w-full py-3 rounded-xl border border-border text-muted text-sm hover:border-danger hover:text-danger transition-colors" />
     </div>
   )
 }

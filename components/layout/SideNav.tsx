@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { LogoutButton } from '@/components/ui/LogoutButton'
 
 const tabs = [
   { href: '/app',         icon: '🏠', label: 'Inicio' },
@@ -43,6 +44,7 @@ export function SideNav() {
         <span className="text-lg leading-none font-black">＋</span>
         Publicar estampa
       </Link>
+      <LogoutButton className="mt-2 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-muted hover:bg-card hover:text-danger transition-colors w-full text-left" />
     </nav>
   )
 }
