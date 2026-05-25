@@ -44,7 +44,7 @@ export function SideNav() {
         <span className="text-lg leading-none font-black">＋</span>
         Publicar estampa
       </Link>
-      <LogoutButton className="mt-2 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-muted hover:bg-card hover:text-danger transition-colors w-full text-left" />
+      <LogoutButton className="mt-2 w-full py-2.5 rounded-xl bg-danger/10 border border-danger/30 text-danger text-sm font-semibold hover:bg-danger hover:text-white transition-all" />
     </nav>
   )
 }

@@ -106,7 +106,6 @@ export default async function ProfilePage() {
         )}
       </section>
 
-      <LogoutButton className="w-full py-3 rounded-xl bg-danger/10 border border-danger/30 text-danger text-sm font-semibold hover:bg-danger hover:text-white transition-all" />
     </div>
   )
 }
