@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { getProfile } from '@/lib/queries/profiles'
 import { getMyStamps } from '@/lib/queries/stamps'
-import { Avatar } from '@/components/ui/Avatar'
+import { AvatarUpload } from './AvatarUpload'
 import { Badge } from '@/components/ui/Badge'
 import { StampCard } from '@/components/ui/StampCard'
 import Link from 'next/link'
@@ -25,7 +25,7 @@ export default async function ProfilePage() {
   return (
     <div className="p-4 space-y-5">
       <div className="bg-card border border-border rounded-2xl p-5 flex gap-4 items-center">
-        <Avatar src={profile.avatar_url} name={profile.full_name} size={64} />
+        <AvatarUpload userId={user.id} avatarUrl={profile.avatar_url} name={profile.full_name} />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-foreground font-bold text-lg">{profile.full_name}</span>
