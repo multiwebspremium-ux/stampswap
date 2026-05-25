@@ -12,16 +12,17 @@ export async function getMyStamps(userId: string): Promise<Stamp[]> {
   return data ?? []
 }
 
-export async function getRecentStamps(limit = 12) {
+export async function getRecentStamps(limit = 12): Promise<(Stamp & { profiles?: { username: string; city: string } | null })[]> {
   const supabase = await createClient()
-  const { data, error } = await supabase
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data, error } = await (supabase as any)
     .from('stamps')
     .select('*, profiles(username, city)')
     .eq('type', 'have')
     .order('created_at', { ascending: false })
     .limit(limit)
   if (error) throw error
-  return data ?? []
+  return (data ?? []) as (Stamp & { profiles?: { username: string; city: string } | null })[]
 }
 
 export async function searchStamps(params: {
