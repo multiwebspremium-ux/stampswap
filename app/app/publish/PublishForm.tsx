@@ -1,9 +1,8 @@
 'use client'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/Button'
 import type { Rarity, StampType } from '@/types/database'
+import { publishStampAction } from './actions'
 
 const RARITIES: { value: Rarity; label: string }[] = [
   { value: 'common', label: '⚪ Común' },
@@ -14,9 +13,7 @@ const RARITIES: { value: Rarity; label: string }[] = [
 
 const FIFA_COUNTRIES = ['Argentina','Brasil','Francia','Inglaterra','España','Alemania','Portugal','México','Uruguay','Colombia','Ecuador','Perú','Chile','Paraguay','Bolivia','Venezuela','Costa Rica','Panamá','Honduras','Guatemala','El Salvador','Jamaica','Canadá','Estados Unidos','Marruecos','Senegal','Nigeria','Camerún','Ghana','Costa de Marfil','Egipto','Sudáfrica','Arabia Saudita','Japón','Corea del Sur','Irán','Australia','Qatar','Serbia','Croacia','Países Bajos','Bélgica','Dinamarca','Polonia','Suiza','Austria','Ucrania','Turquía','Escocia','Albania']
 
-export function PublishForm({ userId }: { userId: string }) {
-  const router = useRouter()
-  const supabase = createClient()
+export function PublishForm({ userId: _userId }: { userId: string }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [type, setType] = useState<StampType>('have')
@@ -30,24 +27,17 @@ export function PublishForm({ userId }: { userId: string }) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError('')
-    const num = parseInt(form.number)
-    if (isNaN(num) || num < 1 || num > 700) { setError('Número inválido (1-700)'); return }
-
     setLoading(true)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error: insertError } = await (supabase.from('stamps') as any).insert({
-      owner_id: userId,
-      number: num,
-      player_name: form.player_name.trim(),
-      country: form.country,
-      rarity: form.rarity,
-      quantity: type === 'have' ? parseInt(form.quantity) : 1,
-      type,
-    })
+    const fd = new FormData()
+    fd.append('type', type)
+    fd.append('number', form.number)
+    fd.append('player_name', form.player_name)
+    fd.append('country', form.country)
+    fd.append('rarity', form.rarity)
+    fd.append('quantity', form.quantity)
+    const result = await publishStampAction(fd)
     setLoading(false)
-    if (insertError) { setError(insertError.message); return }
-    router.push('/app/profile')
-    router.refresh()
+    if (result?.error) setError(result.error)
   }
 
   return (
