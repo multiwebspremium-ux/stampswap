@@ -25,7 +25,7 @@ export function RegisterForm() {
     if (!/^[a-z0-9_]+$/.test(form.username)) { setError('Solo letras minúsculas, números y _'); return }
 
     setLoading(true)
-    const { error: signUpError } = await supabase.auth.signUp({
+    const { data, error: signUpError } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
       options: {
@@ -36,7 +36,11 @@ export function RegisterForm() {
     setLoading(false)
 
     if (signUpError) { setError(signUpError.message); return }
-    router.push('/verify-email')
+    if (data.session) {
+      router.push('/app')
+    } else {
+      router.push('/verify-email')
+    }
   }
 
   return (
