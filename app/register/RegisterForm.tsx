@@ -3,14 +3,14 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/Button'
-
-const CITIES = ['Ciudad de México','Guadalajara','Monterrey','Puebla','Tijuana','Mérida','León','Querétaro','San Luis Potosí','Otra']
+import { MEXICO_STATES } from '@/lib/data/mexico-locations'
 
 export function RegisterForm() {
   const router = useRouter()
   const supabase = createClient()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [estado, setEstado] = useState('')
   const [form, setForm] = useState({
     full_name: '', username: '', email: '', city: '', password: ''
   })
@@ -55,11 +55,28 @@ export function RegisterForm() {
       <input name="email" type="email" placeholder="Email" required value={form.email}
         onChange={handleChange}
         className="bg-card border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted outline-none focus:border-primary transition-colors" />
-      <select name="city" required value={form.city} onChange={handleChange}
+      <select
+        value={estado}
+        onChange={e => { setEstado(e.target.value); setForm(f => ({ ...f, city: '' })) }}
+        required
         className="bg-card border border-border rounded-xl px-4 py-3 text-foreground outline-none focus:border-primary transition-colors">
-        <option value="">Selecciona tu ciudad</option>
-        {CITIES.map(c => <option key={c} value={c}>{c}</option>)}
+        <option value="">Selecciona tu estado</option>
+        {MEXICO_STATES.map(s => <option key={s.name} value={s.name}>{s.name}</option>)}
       </select>
+
+      {estado && (
+        <select
+          name="city"
+          required
+          value={form.city}
+          onChange={handleChange}
+          className="bg-card border border-border rounded-xl px-4 py-3 text-foreground outline-none focus:border-primary transition-colors">
+          <option value="">Selecciona tu ciudad</option>
+          {MEXICO_STATES.find(s => s.name === estado)?.cities.map(c => (
+            <option key={c} value={`${c}, ${estado}`}>{c}</option>
+          ))}
+        </select>
+      )}
       <input name="password" type="password" placeholder="Contraseña (mín. 8 caracteres)" required minLength={8}
         value={form.password} onChange={handleChange}
         className="bg-card border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted outline-none focus:border-primary transition-colors" />
